@@ -1,0 +1,1 @@
+# SmartClaim AI Source Package
