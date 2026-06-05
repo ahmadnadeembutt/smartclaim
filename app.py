@@ -185,12 +185,14 @@ def page_predict():
 
     # Example buttons
     st.markdown('<div class="section-label">Quick Examples</div>', unsafe_allow_html=True)
+
+    def set_example_text(new_text):
+        st.session_state.accident_text = new_text
+
     cols = st.columns(len(EXAMPLE_CASES))
     for i, (label, example_text) in enumerate(EXAMPLE_CASES):
         with cols[i]:
-            if st.button(f"💡 {label}", key=f"ex_{i}", use_container_width=True):
-                st.session_state.accident_text = example_text
-                st.rerun()
+            st.button(f"💡 {label}", key=f"ex_{i}", on_click=set_example_text, args=(example_text,), use_container_width=True)
 
     st.markdown("")  # spacer
 
