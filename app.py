@@ -175,14 +175,9 @@ def page_dashboard():
 def page_predict():
     hero("🔮 Predict Repair Cost", "Enter an Arabic accident description to get an AI-powered cost estimate")
 
-    # Initialize session state
-    if "input_text" not in st.session_state:
-        st.session_state.input_text = ""
-
     # Text area
     text = st.text_area(
         "Arabic Accident Description",
-        value=st.session_state.input_text,
         height=140,
         placeholder="...اكتب وصف الحادث هنا، مثال: صدمة في الصدام الخلفي مع خدوش في الرفرف",
         key="accident_text",
@@ -194,7 +189,7 @@ def page_predict():
     for i, (label, example_text) in enumerate(EXAMPLE_CASES):
         with cols[i]:
             if st.button(f"💡 {label}", key=f"ex_{i}", use_container_width=True):
-                st.session_state.input_text = example_text
+                st.session_state.accident_text = example_text
                 st.rerun()
 
     st.markdown("")  # spacer
