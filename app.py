@@ -67,14 +67,14 @@ def load_ml_pipeline():
     """Pre-loads the ML models into memory once at startup."""
     try:
         from src.predict import _get_model, _get_embedder
-        _get_model()  # Loads best_model.joblib
-        _get_embedder().model  # Loads SentenceTransformer (paraphrase-multilingual-mpnet)
+        _ = _get_model()  # Loads best_model.joblib
+        _ = _get_embedder().model  # Loads SentenceTransformer (paraphrase-multilingual-mpnet)
         return True
     except Exception:
         return False
 
 # Trigger preload in the background
-load_ml_pipeline()
+_ = load_ml_pipeline()
 
 @st.cache_data(show_spinner=False)
 def load_metrics():
